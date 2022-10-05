@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vassoura_quebradaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="acomodacoes">
+    <Key>
+      <PropertyRef Name="acomodacao_ID" />
+    </Key>
+    <Property Name="acomodacao_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_de_acomodacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="andar" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="num_quarto" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="room_service" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="estadia">
+    <Key>
+      <PropertyRef Name="estadia_ID" />
+    </Key>
+    <Property Name="estadia_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reserva_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="acomodacao_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="nome_hospede" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="check_in" Type="DateTime" Precision="3" />
+    <Property Name="check_out" Type="DateTime" Precision="3" />
+    <Property Name="funcionario_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="hospede_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="frigobar_estadia">
+    <Key>
+      <PropertyRef Name="frigobar_ID" />
+    </Key>
+    <Property Name="frigobar_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estadia_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="nome_hospede" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cod_item" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="data_consumida" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="funcionarios">
+    <Key>
+      <PropertyRef Name="funcionarios_ID" />
+    </Key>
+    <Property Name="funcionarios_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="endereco" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nascimento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hospedes">
+    <Key>
+      <PropertyRef Name="hospede_ID" />
+    </Key>
+    <Property Name="hospede_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="endereco" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cpf" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nascimento" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="itens_consumo">
+    <Key>
+      <PropertyRef Name="cod_item" />
+    </Key>
+    <Property Name="cod_item" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preco_venda" Type="Double" />
+  </EntityType>
+  <EntityType Name="reservas">
+    <Key>
+      <PropertyRef Name="reserva_ID" />
+    </Key>
+    <Property Name="reserva_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="funcionario_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="check_in" Type="DateTime" Precision="0" />
+    <Property Name="check_out" Type="DateTime" Precision="0" />
+    <Property Name="hospede_principal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo_de_acomodacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="acompanhantes" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="valor_da_diaria" Type="Double" />
+    <Property Name="taxa_de_multa" Type="Double" />
+    <Property Name="desconto" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="hospede_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="usuario_ID" />
+      <PropertyRef Name="nome" />
+      <PropertyRef Name="cpf" />
+      <PropertyRef Name="cep" />
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="usuario_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cpf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cep" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="vassoura_quebradaBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="acomodacoes" EntityType="Self.acomodacoes" />
+    <EntitySet Name="estadia" EntityType="Self.estadia" />
+    <EntitySet Name="frigobar_estadia" EntityType="Self.frigobar_estadia" />
+    <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
+    <EntitySet Name="hospedes" EntityType="Self.hospedes" />
+    <EntitySet Name="itens_consumo" EntityType="Self.itens_consumo" />
+    <EntitySet Name="reservas" EntityType="Self.reservas" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+  </EntityContainer>
+</Schema>

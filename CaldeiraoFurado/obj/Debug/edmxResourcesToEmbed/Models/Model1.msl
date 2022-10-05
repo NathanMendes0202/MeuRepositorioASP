@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vassoura_quebradaBDModelStoreContainer" CdmEntityContainer="vassoura_quebradaBDEntities">
+    <EntitySetMapping Name="acomodacoes">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.acomodacoes">
+        <MappingFragment StoreEntitySet="acomodacoes">
+          <ScalarProperty Name="acomodacao_ID" ColumnName="acomodacao_ID" />
+          <ScalarProperty Name="tipo_de_acomodacao" ColumnName="tipo_de_acomodacao" />
+          <ScalarProperty Name="andar" ColumnName="andar" />
+          <ScalarProperty Name="num_quarto" ColumnName="num_quarto" />
+          <ScalarProperty Name="room_service" ColumnName="room_service" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estadia">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.estadia">
+        <MappingFragment StoreEntitySet="estadia">
+          <ScalarProperty Name="estadia_ID" ColumnName="estadia_ID" />
+          <ScalarProperty Name="reserva_ID" ColumnName="reserva_ID" />
+          <ScalarProperty Name="acomodacao_ID" ColumnName="acomodacao_ID" />
+          <ScalarProperty Name="nome_hospede" ColumnName="nome_hospede" />
+          <ScalarProperty Name="check_in" ColumnName="check_in" />
+          <ScalarProperty Name="check_out" ColumnName="check_out" />
+          <ScalarProperty Name="funcionario_ID" ColumnName="funcionario_ID" />
+          <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="frigobar_estadia">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.frigobar_estadia">
+        <MappingFragment StoreEntitySet="frigobar_estadia">
+          <ScalarProperty Name="frigobar_ID" ColumnName="frigobar_ID" />
+          <ScalarProperty Name="estadia_ID" ColumnName="estadia_ID" />
+          <ScalarProperty Name="nome_hospede" ColumnName="nome_hospede" />
+          <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+          <ScalarProperty Name="data_consumida" ColumnName="data_consumida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="funcionarios">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.funcionarios">
+        <MappingFragment StoreEntitySet="funcionarios">
+          <ScalarProperty Name="funcionarios_ID" ColumnName="funcionarios_ID" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="nascimento" ColumnName="nascimento" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hospedes">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.hospedes">
+        <MappingFragment StoreEntitySet="hospedes">
+          <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="nascimento" ColumnName="nascimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="itens_consumo">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.itens_consumo">
+        <MappingFragment StoreEntitySet="itens_consumo">
+          <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="preco_venda" ColumnName="preco_venda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservas">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.reservas">
+        <MappingFragment StoreEntitySet="reservas">
+          <ScalarProperty Name="reserva_ID" ColumnName="reserva_ID" />
+          <ScalarProperty Name="funcionario_ID" ColumnName="funcionario_ID" />
+          <ScalarProperty Name="check_in" ColumnName="check_in" />
+          <ScalarProperty Name="check_out" ColumnName="check_out" />
+          <ScalarProperty Name="hospede_principal" ColumnName="hospede_principal" />
+          <ScalarProperty Name="tipo_de_acomodacao" ColumnName="tipo_de_acomodacao" />
+          <ScalarProperty Name="acompanhantes" ColumnName="acompanhantes" />
+          <ScalarProperty Name="valor_da_diaria" ColumnName="valor_da_diaria" />
+          <ScalarProperty Name="taxa_de_multa" ColumnName="taxa_de_multa" />
+          <ScalarProperty Name="desconto" ColumnName="desconto" />
+          <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="vassoura_quebradaBDModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="usuario_ID" ColumnName="usuario_ID" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

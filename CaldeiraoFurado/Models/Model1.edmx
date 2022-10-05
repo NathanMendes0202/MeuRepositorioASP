@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="vassoura_quebradaBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="acomodacoes">
+          <Key>
+            <PropertyRef Name="acomodacao_ID" />
+          </Key>
+          <Property Name="acomodacao_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_de_acomodacao" Type="varchar" MaxLength="20" />
+          <Property Name="andar" Type="varchar" MaxLength="4" />
+          <Property Name="num_quarto" Type="varchar" MaxLength="6" />
+          <Property Name="room_service" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="estadia">
+          <Key>
+            <PropertyRef Name="estadia_ID" />
+          </Key>
+          <Property Name="estadia_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reserva_ID" Type="varchar" MaxLength="4" />
+          <Property Name="acomodacao_ID" Type="varchar" MaxLength="4" />
+          <Property Name="nome_hospede" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="check_in" Type="datetime" />
+          <Property Name="check_out" Type="datetime" />
+          <Property Name="funcionario_ID" Type="varchar" MaxLength="4" />
+          <Property Name="hospede_ID" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="frigobar_estadia">
+          <Key>
+            <PropertyRef Name="frigobar_ID" />
+          </Key>
+          <Property Name="frigobar_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estadia_ID" Type="varchar" MaxLength="4" />
+          <Property Name="nome_hospede" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cod_item" Type="varchar" MaxLength="10" />
+          <Property Name="data_consumida" Type="date" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="funcionarios_ID" />
+          </Key>
+          <Property Name="funcionarios_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="endereco" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nascimento" Type="date" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hospedes">
+          <Key>
+            <PropertyRef Name="hospede_ID" />
+          </Key>
+          <Property Name="hospede_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="endereco" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="nascimento" Type="date" />
+        </EntityType>
+        <EntityType Name="itens_consumo">
+          <Key>
+            <PropertyRef Name="cod_item" />
+          </Key>
+          <Property Name="cod_item" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="preco_venda" Type="float" />
+        </EntityType>
+        <EntityType Name="reservas">
+          <Key>
+            <PropertyRef Name="reserva_ID" />
+          </Key>
+          <Property Name="reserva_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="funcionario_ID" Type="varchar" MaxLength="4" />
+          <Property Name="check_in" Type="date" />
+          <Property Name="check_out" Type="date" />
+          <Property Name="hospede_principal" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tipo_de_acomodacao" Type="varchar" MaxLength="20" />
+          <Property Name="acompanhantes" Type="varchar" MaxLength="70" />
+          <Property Name="valor_da_diaria" Type="float" />
+          <Property Name="taxa_de_multa" Type="float" />
+          <Property Name="desconto" Type="varchar" MaxLength="12" />
+          <Property Name="hospede_ID" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'vassoura_quebradaBD.dbo.usuarios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuario_ID" />
+            <PropertyRef Name="nome" />
+            <PropertyRef Name="cpf" />
+            <PropertyRef Name="cep" />
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="usuario_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="text" Nullable="false" />
+          <Property Name="cpf" Type="text" Nullable="false" />
+          <Property Name="cep" Type="text" Nullable="false" />
+          <Property Name="email" Type="text" Nullable="false" />
+          <Property Name="senha" Type="text" />
+        </EntityType>
+        <EntityContainer Name="vassoura_quebradaBDModelStoreContainer">
+          <EntitySet Name="acomodacoes" EntityType="Self.acomodacoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estadia" EntityType="Self.estadia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="frigobar_estadia" EntityType="Self.frigobar_estadia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hospedes" EntityType="Self.hospedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="itens_consumo" EntityType="Self.itens_consumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reservas" EntityType="Self.reservas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [usuarios].[usuario_ID] AS [usuario_ID], 
+    [usuarios].[nome] AS [nome], 
+    [usuarios].[cpf] AS [cpf], 
+    [usuarios].[cep] AS [cep], 
+    [usuarios].[email] AS [email], 
+    [usuarios].[senha] AS [senha]
+    FROM [dbo].[usuarios] AS [usuarios]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vassoura_quebradaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="acomodacoes">
+          <Key>
+            <PropertyRef Name="acomodacao_ID" />
+          </Key>
+          <Property Name="acomodacao_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_de_acomodacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="andar" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="num_quarto" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="room_service" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="estadia">
+          <Key>
+            <PropertyRef Name="estadia_ID" />
+          </Key>
+          <Property Name="estadia_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reserva_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="acomodacao_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="nome_hospede" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="check_in" Type="DateTime" Precision="3" />
+          <Property Name="check_out" Type="DateTime" Precision="3" />
+          <Property Name="funcionario_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="hospede_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="frigobar_estadia">
+          <Key>
+            <PropertyRef Name="frigobar_ID" />
+          </Key>
+          <Property Name="frigobar_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estadia_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="nome_hospede" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cod_item" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="data_consumida" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="funcionarios_ID" />
+          </Key>
+          <Property Name="funcionarios_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="endereco" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nascimento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hospedes">
+          <Key>
+            <PropertyRef Name="hospede_ID" />
+          </Key>
+          <Property Name="hospede_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="endereco" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nascimento" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="itens_consumo">
+          <Key>
+            <PropertyRef Name="cod_item" />
+          </Key>
+          <Property Name="cod_item" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="preco_venda" Type="Double" />
+        </EntityType>
+        <EntityType Name="reservas">
+          <Key>
+            <PropertyRef Name="reserva_ID" />
+          </Key>
+          <Property Name="reserva_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="funcionario_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="check_in" Type="DateTime" Precision="0" />
+          <Property Name="check_out" Type="DateTime" Precision="0" />
+          <Property Name="hospede_principal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_de_acomodacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="acompanhantes" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="valor_da_diaria" Type="Double" />
+          <Property Name="taxa_de_multa" Type="Double" />
+          <Property Name="desconto" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="hospede_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuario_ID" />
+            <PropertyRef Name="nome" />
+            <PropertyRef Name="cpf" />
+            <PropertyRef Name="cep" />
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="usuario_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cep" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="vassoura_quebradaBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="acomodacoes" EntityType="Self.acomodacoes" />
+          <EntitySet Name="estadia" EntityType="Self.estadia" />
+          <EntitySet Name="frigobar_estadia" EntityType="Self.frigobar_estadia" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
+          <EntitySet Name="hospedes" EntityType="Self.hospedes" />
+          <EntitySet Name="itens_consumo" EntityType="Self.itens_consumo" />
+          <EntitySet Name="reservas" EntityType="Self.reservas" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vassoura_quebradaBDModelStoreContainer" CdmEntityContainer="vassoura_quebradaBDEntities">
+          <EntitySetMapping Name="acomodacoes">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.acomodacoes">
+              <MappingFragment StoreEntitySet="acomodacoes">
+                <ScalarProperty Name="acomodacao_ID" ColumnName="acomodacao_ID" />
+                <ScalarProperty Name="tipo_de_acomodacao" ColumnName="tipo_de_acomodacao" />
+                <ScalarProperty Name="andar" ColumnName="andar" />
+                <ScalarProperty Name="num_quarto" ColumnName="num_quarto" />
+                <ScalarProperty Name="room_service" ColumnName="room_service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadia">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.estadia">
+              <MappingFragment StoreEntitySet="estadia">
+                <ScalarProperty Name="estadia_ID" ColumnName="estadia_ID" />
+                <ScalarProperty Name="reserva_ID" ColumnName="reserva_ID" />
+                <ScalarProperty Name="acomodacao_ID" ColumnName="acomodacao_ID" />
+                <ScalarProperty Name="nome_hospede" ColumnName="nome_hospede" />
+                <ScalarProperty Name="check_in" ColumnName="check_in" />
+                <ScalarProperty Name="check_out" ColumnName="check_out" />
+                <ScalarProperty Name="funcionario_ID" ColumnName="funcionario_ID" />
+                <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="frigobar_estadia">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.frigobar_estadia">
+              <MappingFragment StoreEntitySet="frigobar_estadia">
+                <ScalarProperty Name="frigobar_ID" ColumnName="frigobar_ID" />
+                <ScalarProperty Name="estadia_ID" ColumnName="estadia_ID" />
+                <ScalarProperty Name="nome_hospede" ColumnName="nome_hospede" />
+                <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+                <ScalarProperty Name="data_consumida" ColumnName="data_consumida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcionarios">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.funcionarios">
+              <MappingFragment StoreEntitySet="funcionarios">
+                <ScalarProperty Name="funcionarios_ID" ColumnName="funcionarios_ID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="nascimento" ColumnName="nascimento" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hospedes">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.hospedes">
+              <MappingFragment StoreEntitySet="hospedes">
+                <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="nascimento" ColumnName="nascimento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="itens_consumo">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.itens_consumo">
+              <MappingFragment StoreEntitySet="itens_consumo">
+                <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="preco_venda" ColumnName="preco_venda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservas">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.reservas">
+              <MappingFragment StoreEntitySet="reservas">
+                <ScalarProperty Name="reserva_ID" ColumnName="reserva_ID" />
+                <ScalarProperty Name="funcionario_ID" ColumnName="funcionario_ID" />
+                <ScalarProperty Name="check_in" ColumnName="check_in" />
+                <ScalarProperty Name="check_out" ColumnName="check_out" />
+                <ScalarProperty Name="hospede_principal" ColumnName="hospede_principal" />
+                <ScalarProperty Name="tipo_de_acomodacao" ColumnName="tipo_de_acomodacao" />
+                <ScalarProperty Name="acompanhantes" ColumnName="acompanhantes" />
+                <ScalarProperty Name="valor_da_diaria" ColumnName="valor_da_diaria" />
+                <ScalarProperty Name="taxa_de_multa" ColumnName="taxa_de_multa" />
+                <ScalarProperty Name="desconto" ColumnName="desconto" />
+                <ScalarProperty Name="hospede_ID" ColumnName="hospede_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="vassoura_quebradaBDModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="usuario_ID" ColumnName="usuario_ID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
